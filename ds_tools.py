@@ -129,28 +129,29 @@ def PlotBoundaries(model, X, Y, figsize=(8, 6)):
     plt.scatter(X[:, 0], X[:, 1], c=Y, s=20, edgecolor='k')
     plt.show()
 
-    ########################################################################################################################
+########################################################################################################
 
-    def PlotEnsembleBoundaries(ensembles, X, Y, shape, figsize=(10, 7)):
-        '''
-        Helper function to plot the boundaries of ensemble methods.
-        code modified from: https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_iris.html
-        '''
-        fig, axes = plt.subplots(shape[0], shape[1], figsize=figsize)
-        for i, (ax, model) in enumerate(zip(axes.ravel(), ensembles)):
-            x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-            y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-            xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.01),
-                                np.arange(y_min, y_max, 0.01))
+def decompose_DFs (df, mult_or_add, p):
+    '''
+    Function to decompose time series data and create an output dataframe of decomposed data
 
-            Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-            Z = Z.reshape(xx.shape)
+    ---INPUTS---
+    df: Time series DataFrame
+    mult_or_add: String, is TS data additive or multiplicative?
+    p: Integer, seasonal period
 
-            ax.contourf(xx, yy, Z, alpha=0.4)
+    ---OUTPUT---
+    output: DataFrame of decomposed time series
 
-            # Plot
-            ax.scatter(X[:, 0], X[:, 1], c=Y, s=20, edgecolor='k')
-            ax.get_xaxis().set_visible(False)
-            ax.get_yaxis().set_visible(False)
+    '''
+    from statsmodels.api import tsa
 
-        plt.show()
+    output = pd.DataFrame()
+    for col in df.columns:
+        name = col + '_Decomp'
+        globals()[name] = tsa.seasonal_decompose(df[[col]], model = mult_or_add, period = p, extrapolate_trend=True) # extrapolate_trend = 'freq' to fill in nulls
+        output[col + '_Trend'] = globals()[name].trend
+        output[col + '_Seasonal'] = globals()[name].seasonal
+        output[col + '_Residual'] = globals()[name].resid
+    
+    return output
