@@ -16,6 +16,7 @@ These have been commented out and replaced with an equivalent `pd.read_pickle` t
 - Final Report.pdf
 - Final Presentation.pptx
 - timeseries.yaml
+- dstools.py
 
 ## Data Folder:
 - Data Source.url
