@@ -1,3 +1,4 @@
 data/raw
 .gitattributes/
 __pycache__/
+data.zip
