@@ -17,21 +17,15 @@ These have been commented out and replaced with an equivalent `pd.read_pickle` t
 - Final Presentation.pptx
 - timeseries.yaml
 - dstools.py
+- data.zip
 
-## Data Folder:
-- Data Source.url
-- DF_dict.pkl
-- LCL_unstack.pkl
-- LCL_unstack_hrs.pkl
-- LCL_unstack_day.pkl
-- LCL_unstack_wks.pkl
 
-Raw data was too large to upload to GitHub. This can be downloaded in .pkl format from:
+Data can be downloaded from:
 
-https://drive.google.com/drive/folders/1IO0Uw8hRwSkFH3EUPYjePXoc0fGohZ6k?usp=sharing
+https://drive.google.com/file/d/1AG-8RUtbDF6ao92UjQJ9tcPkLd_gYuit/view?usp=share_link
 
-The entire `raw` folder should be downloaded and placed in teh `data` folder.
+Data folder should be unzipped ad placed in the same folder as the notebooks.
 
-Alternatively from the 'Data Source.url' shortcut.
+Alternatively can be downloaded from the 'Data Source.url' shortcut.
 
 
